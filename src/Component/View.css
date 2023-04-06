@@ -1,0 +1,17 @@
+.heading{
+    color :black;
+}
+.cont{
+    background-color: #2d3e3f;
+    color: white;
+    margin: 20px auto;
+    list-style: none;
+    border: 2px solid #2d3e3f;
+    border-radius: 2px;
+    padding: 10px;
+    width: 430px
+}
+.cont li{
+    text-align: start;
+    padding-left: 30px;
+}
