@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../Component/Signup.css";
 import { setUser } from "../actions";
+import ErrorMessages from "./ErrorMessage";
 
 const Signup = () => {
   const [ error,setError] = useState('');
@@ -17,37 +18,39 @@ const Signup = () => {
     const mobileno = e.target.mobileno.value;
     //Validate Input 
     if (name.length < 1 || name.length > 40 || /^[a-zA-Z]+( [a-zA-Z]+)*$/.test(name)==false) {
-      setError('Name is not valid.');
+     setError(ErrorMessages.name);
+     //alert(ErrorMessages.name)
       return;
     }
 
     // Validate email
-    if (/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(email)==false || email.includes('.yopmail') || email.toUpperCase() === email) {
-      setError('Email is not valid.');
+    if (/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(email)==false || email.includes('@yopmail') || email.toUpperCase() === email) {
+      setError(ErrorMessages.email);
+      //alert(ErrorMessages.email)
       return;
     }
 
     // Validate password
     if (password.length < 7 || password.length > 12 || password.includes(' ')) {
-      setError('Password is not valid.');
+      setError(ErrorMessages.password);
       return;
     }
 
     // Validate confirm password
     if (password !== confirmpassword) {
-      setError('Confirm password does not match.');
+      setError(ErrorMessages.confirmPassword);
       return;
     }
 
     // Validate country code
     if (/^\+?\d{1,3}$/.test(countrycode)) {
-      setError('Country code is not valid.');
+      setError(ErrorMessages.countryCode);
       return;
     }
 
     // Validate mobile number
     if (mobileno.length < 10 || mobileno.length > 12 || mobileno.startsWith('0')) {
-      setError('Mobile number is not valid.');
+      setError(ErrorMessages.mobileNumber);
       return;
     }
 
@@ -168,6 +171,8 @@ const Signup = () => {
           <div className="fr">
             <input
               type="text"
+
+
               name="countrycode"
               placeholder="Country Code"
               className="textBox"
